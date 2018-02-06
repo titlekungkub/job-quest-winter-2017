@@ -1,0 +1,114 @@
+body {
+    background-image: url('bg.png');
+    height: 80%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#container {
+    width: 600px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 40px;
+    text-align: center;
+    margin: 40px auto;
+}
+
+#header{
+    width: 600px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 70px;
+    text-align: center;
+    margin: 40px auto;
+    color: #ffffff;
+    text-shadow: #000 0px 4px 10px;
+}
+
+#app {
+    font-size: 35px;
+    color: #080D3B;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+}
+
+#create {
+    width: 90%;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: inherit;
+    padding: 10px 30px;
+    border-left:    1px  solid #C3C3C4;
+    border-right:   1px  solid #C3C3C4;
+    border-bottom:  1px  solid #C3C3C4;
+    border-top:     15px solid #405275;
+    text-align: center;
+}
+
+
+#create::-webkit-input-placeholder {
+    color: #C3C3C4;
+    text-align: center;
+}
+
+#create::-moz-placeholder {  
+    color: #C3C3C4;
+    text-align: center;
+}
+
+#create:focus::-webkit-input-placeholder {
+    color: transparent;
+    text-align: center;
+}
+
+#create:focus::-moz-placeholder {  
+    color: transparent;
+    text-align: center;
+}
+
+#list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.item {
+    box-shadow: 0 0 5px #C3C3C4;
+    background-color: white;
+    margin-top: 10px;
+    position: relative;
+    box-sizing: border-box;
+    padding: 10px;
+    list-style-type: none;
+    width: 100%;
+}
+
+.item .complete-button {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.item .value {
+    margin: 0 50px;
+    padding: 0 15px;
+}
+
+.item .delete-button {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+    color: rgb(255, 0, 0);
+}
+
+.item.completed {
+    color: #C3C3C4;
+}
+
+#templates {
+    display: none
+}
