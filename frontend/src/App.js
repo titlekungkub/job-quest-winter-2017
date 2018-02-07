@@ -13,22 +13,51 @@ class App extends Component {
       todoItems : [] 
     }
     this.addTodo = this.addTodo.bind(this)
+    this.deleteTodo = this.deleteTodo.bind(this)
+    this.togglecompleteness = this.togglecompleteness.bind(this)
   }
   
   componentWillMount() {
-    axios.get('https://listalous.herokuapp.com/lists/titlekungkub/')
+    axios.get('https://listalous.herokuapp.com/lists/titlekungkub')
     .then((response)=>{
-      console.log(response.data['items']);
       this.setState({
         todoItems : response.data['items']
       })
     })
   }
   
-  
   addTodo(newTodo){
-    this.setState({
-      todoItems : this.state.todoItems.concat([newTodo])
+    axios.post('http://listalous.herokuapp.com/lists/titlekungkub/items', {
+      description: newTodo,
+      completed: false 
+    })
+    .then((response)=> {
+      this.setState({
+        todoItems : this.state.todoItems.concat(response.data)
+      })
+    })
+  }
+
+  deleteTodo(itemId){
+    axios.delete('http://listalous.herokuapp.com/lists/titlekungkub/items/'+itemId)
+    .then((response)=> {
+      this.setState({
+        todoItems : this.state.todoItems.filter(item => item.id !== response.data.id)
+      })
+    })
+  }
+      
+  togglecompleteness(itemId,currentComplete){
+    let index = this.state.todoItems.findIndex(item => item.id === itemId);
+    axios.put('http://listalous.herokuapp.com/lists/titlekungkub/items/'+ itemId,{
+      completed: !currentComplete + ''
+    })
+    .then((response)=> {
+      let tmp = this.state.todoItems
+      tmp.splice(index,1,response.data)
+      this.setState({
+        todoItems : tmp
+      })
     })
   }
 
@@ -47,7 +76,7 @@ class App extends Component {
             <TodoInput onEntered={this.addTodo}/>
           </div>
           <div id='list-container'>
-            <TodoList items={todoItems}/>
+            <TodoList items={todoItems} onDelete={this.deleteTodo} onCompleted={this.togglecompleteness}/>
           </div>
         </div>
       </div>
